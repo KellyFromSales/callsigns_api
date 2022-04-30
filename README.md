@@ -10,9 +10,9 @@ running `npm start` will listen for requests on port 5001.
 
 endpoints I have set up so far are: 
 
-GET:callsigns/ : Returns all callsigns (this is a lot of info and not super practical) 
+GET: /callsigns/ : Returns all callsigns (this is a lot of info and not super practical) 
 
-GET:callsigns/<callsign> : Returns information about a specific callsign. 
+GET: /callsigns/\<callsign\> : Returns information about a specific callsign. 
   
 Example of what is returned:
 ```
@@ -29,11 +29,11 @@ Example of what is returned:
 }
 ```
   
-GET:callsigns/level/<level> : returns all callsigns of a particular level (Full/Intermediate/Foundation) 
+GET: /callsigns/level/\<level\> : returns all callsigns of a particular level (Full/Intermediate/Foundation) 
   
-POST:/callsigns : Add a callsign to the database
+POST: /callsigns : Add a callsign to the database
 
-PATCH:/callsigns/<callsign> : Update Callsign
+PATCH: /callsigns/\<callsign\> : Update Callsign
   
-DELETE:/callsigns/<callsign> : Delete Callsign from Database
+DELETE: /callsigns/\<callsign\> : Delete Callsign from Database
   
