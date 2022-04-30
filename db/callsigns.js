@@ -1,7 +1,7 @@
 const knex = require("./knex");
 
 function addCallsign(cs) {
-    return knex("callsigns").insert(cs);
+    return knex("callsigns").insert(cs).onConflict('Value').ignore();
 }
 
 function getAllCallsigns() {
