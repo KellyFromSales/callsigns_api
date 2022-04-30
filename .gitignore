@@ -2,3 +2,5 @@
 node_modules/
 
 callsigns.xlsx
+
+callsigns.db
