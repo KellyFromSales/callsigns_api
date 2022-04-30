@@ -6,6 +6,13 @@ const db = require("./db/callsigns");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 5001;
+}
+app.listen(port);
+
+
 app.post("/callsigns", async (req, res) => {
   const results = await db.addCallsign(req.body);
   res.status(201).json({ id: results[0] });
@@ -36,4 +43,4 @@ app.delete("/callsigns/:id", async (req, res) => {
   res.status(200).json({ sucess: true });
 });
 
-app.listen(5001, () => console.log("server is listening on port 5001"));
+app.listen(port, () => console.log("server is listening on port 5001"));
