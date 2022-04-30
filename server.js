@@ -12,7 +12,6 @@ if (port == null || port == "") {
 }
 app.listen(port);
 
-
 app.post("/callsigns", async (req, res) => {
   const results = await db.addCallsign(req.body);
   res.status(201).json({ id: results[0] });
@@ -43,4 +42,4 @@ app.delete("/callsigns/:id", async (req, res) => {
   res.status(200).json({ sucess: true });
 });
 
-app.listen(port, () => console.log("server is listening on port 5001"));
+app.listen(port, () => console.log("server is listening"));

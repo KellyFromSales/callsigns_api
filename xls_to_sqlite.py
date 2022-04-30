@@ -1,8 +1,9 @@
 import pandas as pd
-import numpy as np
-import sqlite3
+from sqlalchemy import create_engine
 import re
+import os
 
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 full_list = re.compile('[G]\d|[M][015]')
 intermediate_list = re.compile('21|20')
@@ -26,15 +27,12 @@ def extract(col):
 
 
 filename = "callsigns"
-con = sqlite3.connect(filename+".db")
+engine = create_engine(DATABASE_URL, connect_args={'sslmode': 'require'})
 wb = pd.ExcelFile(filename+'.xlsx')
 for sheet in wb.sheet_names:
     df = pd.read_excel(filename+'.xlsx', sheet_name=sheet)
 
     df["level"] = df["Value"].apply(extract)
-
-    df["qrz"] = "https://www.qrz.com/db/" + df["Value"]
-    df.to_sql("callsigns", con, index=False, if_exists="replace",
-              dtype={'Value': 'STRING PRIMARY KEY'})
-con.commit()
-con.close()
+    df.rename(columns={"Value": "Callsign"}, inplace=True)
+    df["qrz"] = "https://www.qrz.com/db/" + df["Callsign"]
+    df.to_sql("callsigns", engine, index=False, if_exists="replace")

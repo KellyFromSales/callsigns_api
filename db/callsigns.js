@@ -1,7 +1,7 @@
 const knex = require("./knex");
 
 function addCallsign(cs) {
-  return knex("callsigns").insert(cs).onConflict("Value").ignore();
+  return knex("callsigns").insert(cs).onConflict("Callsign").ignore();
 }
 
 function getAllCallsigns() {
@@ -9,7 +9,7 @@ function getAllCallsigns() {
 }
 
 function getCallsign(id) {
-  return knex("callsigns").where("Value", id);
+  return knex("callsigns").where("Callsign", id);
 }
 
 function getCallsignByLevel(level) {
@@ -17,11 +17,11 @@ function getCallsignByLevel(level) {
 }
 
 function deleteCallsign(id) {
-  return knex("callsigns").where("Value", id).del();
+  return knex("callsigns").where("Callsign", id).del();
 }
 
 function updateCallsign(id, cs) {
-  return knex("callsigns").where("Value", id).update(cs);
+  return knex("callsigns").where("Callsign", id).update(cs);
 }
 
 module.exports = {
