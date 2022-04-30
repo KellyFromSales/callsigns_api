@@ -23,7 +23,7 @@ Example of what is returned:
             "Status": "Allocated",
             "Type": "Call Sign - Amateur",
             "level": "Full",
-            "qrz": "https://www.qrz.com/db/G5LUX"
+            "qrz": "https://www.qrz.com/db/G5LLP"
         }
     ]
 }
