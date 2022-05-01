@@ -10,7 +10,6 @@ let port = process.env.PORT;
 if (port == null || port == "") {
   port = 5001;
 }
-app.listen(port);
 
 app.post("/callsigns", async (req, res) => {
   const results = await db.addCallsign(req.body);
