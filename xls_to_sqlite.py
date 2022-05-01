@@ -32,7 +32,7 @@ wb = pd.ExcelFile(filename+'.xlsx')
 for sheet in wb.sheet_names:
     df = pd.read_excel(filename+'.xlsx', sheet_name=sheet)
 
-    df["level"] = df["Value"].apply(extract)
+    df["Level"] = df["Value"].apply(extract)
     df.rename(columns={"Value": "Callsign"}, inplace=True)
-    df["qrz"] = "https://www.qrz.com/db/" + df["Callsign"]
+    df["QRZ"] = "https://www.qrz.com/db/" + df["Callsign"]
     df.to_sql("callsigns", engine, index=False, if_exists="replace")
