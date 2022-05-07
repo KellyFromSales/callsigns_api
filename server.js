@@ -12,6 +12,13 @@ if (port == null || port == "") {
 }
 
 app.post("/callsigns", async (req, res) => {
+  const callsign = req.body
+
+  if(!callsign || !callsign.Callsign){
+    res.status(400)
+    res.send({message:'Missing Callsign!', body: req.body})
+    return
+  }
   const results = await db.addCallsign(req.body);
   res.status(201).json({ id: results[0] });
 });
@@ -23,12 +30,24 @@ app.get("/callsigns", async (req, res) => {
 
 app.get("/callsigns/:id", async (req, res) => {
   const Callsign = await db.getCallsign(req.params.id);
-  res.status(200).json({ Callsign });
+  if(Callsign.length > 0) {
+    res.status(200).json({ Callsign });
+  } else {
+    res.status(404)
+    res.send({message: 'Callsign not found!'})
+  }
+
 });
 
 app.get("/callsigns/level/:level", async (req, res) => {
-  const Callsigns = await db.getCallsignByLevel(req.params.level);
-  res.status(200).json({ Callsigns });
+  if(req.params.level == 'Full' || req.params.level == 'Intermediate' || req.params.level == 'Foundation'){
+    const Callsigns = await db.getCallsignByLevel(req.params.level);
+    res.status(200).json({ Callsigns });
+  } else{
+    res.status(404)
+    res.send({message: 'Invalid Level!'})
+  }
+
 });
 
 app.patch("/callsigns/:id", async (req, res) => {

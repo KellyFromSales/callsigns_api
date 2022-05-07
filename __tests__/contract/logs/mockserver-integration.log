@@ -1,0 +1,6 @@
+I, [2022-05-07T15:32:30.748992 #2334]  INFO -- : Registered expected interaction GET /callsigns
+I, [2022-05-07T15:32:30.768920 #2334]  INFO -- : Received request GET /callsigns
+I, [2022-05-07T15:32:30.769477 #2334]  INFO -- : Found matching response for GET /callsigns
+I, [2022-05-07T15:32:30.787419 #2334]  INFO -- : Verifying - interactions matched
+I, [2022-05-07T15:32:30.813512 #2334]  INFO -- : Cleared interactions
+I, [2022-05-07T15:32:30.823862 #2334]  INFO -- : Writing pact for CallsignService to /mnt/i/projects/callsigns_api/__tests__/contract/pacts/frontend-callsignservice.json

@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const parse = require("pg-connection-string").parse;
 
-const pgconfig = parse(process.env.DATABASE_URL);
+const pgconfig = parse(process.env.LOCAL_DATABASE_URL);
 
 if (pgconfig.host != "localhost") {
   pgconfig.ssl = { rejectUnauthorized: false };

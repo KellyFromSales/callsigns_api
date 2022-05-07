@@ -5,18 +5,29 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "consumer": "node consumer/consumerService.js",
+    "test:consumer": "jest __tests__/contract/consumer --runInBand --setupFiles ./__tests__/contract/helpers/pactSetup.js --setupTestFrameworkScriptFile=./__tests__/contract/helpers/pactTestWrapper.js",
+    "test:provider": "jest __tests__/contract/provider --runInBand --force-exit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@pact-foundation/pact": "^9.17.3",
+    "@pact-foundation/pact-node": "^10.17.2",
+    "axios": "^0.27.2",
     "body-parser": "^1.20.0",
     "dotenv": "^16.0.0",
     "express": "^4.18.0",
+    "jest": "^25.1.0",
     "knex": "^2.0.0",
     "nodemon": "^2.0.15",
     "pg": "^8.7.3",
     "sqlite3": "^5.0.6"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 60000
   }
 }
