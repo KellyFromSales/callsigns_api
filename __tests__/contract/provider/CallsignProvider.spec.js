@@ -1,5 +1,6 @@
 const path = require("path")
 const { Verifier } = require("@pact-foundation/pact")
+const { timeout } = require("nodemon/lib/config")
 
 const SERVER_URL = "http://uk-callsigns-api.herokuapp.com"
   
@@ -7,13 +8,14 @@ const SERVER_URL = "http://uk-callsigns-api.herokuapp.com"
     it("validates the expectations of Callsign Service", () => {
       let opts = {
             provider: "Callsign Service",
-            logLevel: "DEBUG",
+            logLevel: "INFO",
             providerBaseUrl: SERVER_URL,
-            pactUrls: [path.resolve(process.cwd(), "./__tests__/contract/pacts/frontend-callsignservice.json")],
+            pactUrls: ['http://localhost:8080/pacts/provider/CallsignService/consumer/Frontend/latest'],
             consumerVersionTags: ["dev"],
             providerVersionTags: ["dev"],
-            publishVerificationResult: false,
-            providerVersion: "1.0.0"
+            publishVerificationResult: true,
+            providerVersion: "1.0.0",
+            timeout: 180000
           }
         return new Verifier(opts).verifyProvider().then(output => {
             console.log("Pact Verification Complete!")

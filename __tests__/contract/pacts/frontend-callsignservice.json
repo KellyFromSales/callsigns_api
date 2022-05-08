@@ -7,6 +7,57 @@
   },
   "interactions": [
     {
+      "description": "a request for a callsign",
+      "providerState": "i have a list of callsigns",
+      "request": {
+        "method": "GET",
+        "path": "/callsigns/M7RFT",
+        "headers": {
+          "Accept": "application/json, text/plain, */*"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "Callsign": [
+            {
+              "Callsign": "M7RFT",
+              "Status": "Allocated",
+              "Type": "Call Sign - Amateur",
+              "Level": "Foundation",
+              "QRZ": "https://www.qrz.com/db/M7RFT"
+            }
+          ]
+        },
+        "matchingRules": {
+          "$.body.Callsign": {
+            "min": 1
+          },
+          "$.body.Callsign[*].*": {
+            "match": "type"
+          },
+          "$.body.Callsign[*].Callsign": {
+            "match": "type"
+          },
+          "$.body.Callsign[*].Status": {
+            "match": "type"
+          },
+          "$.body.Callsign[*].Type": {
+            "match": "type"
+          },
+          "$.body.Callsign[*].Level": {
+            "match": "type"
+          },
+          "$.body.Callsign[*].QRZ": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
       "description": "a request for all callsigns",
       "providerState": "i have a list of callsigns",
       "request": {
@@ -24,11 +75,7 @@
         "body": {
           "Callsigns": [
             {
-              "Callsign": "M7RFT",
-              "Status": "Allocated",
-              "Type": "Call Sign - Amateur",
-              "Level": "Foundation",
-              "QRZ": "https://www.qrz.com/db/M7RFT"
+              "Callsign": "M7RFT"
             }
           ]
         },
@@ -37,21 +84,6 @@
             "min": 1
           },
           "$.body.Callsigns[*].*": {
-            "match": "type"
-          },
-          "$.body.Callsigns[*].Callsign": {
-            "match": "type"
-          },
-          "$.body.Callsigns[*].Status": {
-            "match": "type"
-          },
-          "$.body.Callsigns[*].Type": {
-            "match": "type"
-          },
-          "$.body.Callsigns[*].Level": {
-            "match": "type"
-          },
-          "$.body.Callsigns[*].QRZ": {
             "match": "type"
           }
         }
