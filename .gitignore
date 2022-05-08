@@ -6,3 +6,5 @@ callsigns.xlsx
 callsigns.db
 .vscode/
 .env
+__tests__/contract/logs/
+__tests__/contract/pacts/ 
