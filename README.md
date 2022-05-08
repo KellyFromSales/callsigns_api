@@ -1,6 +1,6 @@
 # callsigns_api
 
-Project for learning to make an API. 
+Project for learning to make an API and Contract testing with Pact. 
 
 `xls_to_sqlite.py` is used to convert the latest callsign spreadsheet from Ofcom to a postgresql format and upload it to the connection specified in your environmental variables. 
 
